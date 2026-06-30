@@ -22,7 +22,14 @@
         flex-wrap: wrap;
         [class*='col-'] {
             flex: 0, 0;
-            border: 1px solid darken(@primary-text-color, 30%);
+            display: flex;
+        }
+    }
+    &.debug {
+        .row {
+            [class*='col-1'] {
+                border: 1px solid darken(@primary-background-color, 30%);
+            }
         }
     }
     // Generar las columnas para móviles
@@ -39,4 +46,26 @@
     @media (min-width: #break-points[wide]) {
         .generarColumnas('xl-', 12);
     }
+}
+
+.justify-center {
+    justify-content: center;
+}
+.justify-start {
+    justify-content: start;
+}
+.justify-end {
+    justify-content: end;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.align-items-center {
+    align-items: center;
+}
+.align-items-start {
+    align-items: start;
+}
+.align-items-end {
+    align-items: end;
 }
