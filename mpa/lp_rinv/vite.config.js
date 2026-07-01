@@ -5,6 +5,8 @@ import * as glob from "glob";
 import HtmlCssPurgePlugin from 'vite-plugin-purgecss';
 import HandlebarPlugin from 'vite-plugin-handlebars';
 
+import getPageContext from './src/data/index';
+
 
 function obtenerHtmlFiles() {
     return Object.fromEntries(
@@ -42,7 +44,13 @@ export default defineConfig(
         plugins: [
             HandlebarPlugin(
                 {
-                    partialDirectory: resolve(__dirname, 'src/partials')
+                    partialDirectory: resolve(__dirname, 'src/partials'),
+                    context: (page) => {
+                        console.log(`Cargando contexto de: ${page}`);
+                        let context = getPageContext(page);
+                        console.log(JSON.stringify(context,null, 2));
+                        return context;
+                    }
                 }
             ),
             HtmlCssPurgePlugin()
